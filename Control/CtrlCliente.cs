@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TallerMantenimiento.Modelo;
 using TallerMantenimiento.Conexion;
+using TallerMantenimiento.Modelo;
 
 namespace TallerMantenimiento.Control
 {
     class CtrlCliente
     {
         private static CtrlCliente ctrlCliente = null;
-        private List<Cliente> lstCliente { get; set; }
-        private Cliente clt;
         private ConexionDB conexionDB;
 
 

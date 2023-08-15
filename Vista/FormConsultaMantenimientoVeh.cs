@@ -62,7 +62,7 @@ namespace TallerMantenimiento.Vista
 
         private void LoadMantenimientos()
         {
-            FillDataGridView(ctrlMant.obtenerLista());
+            FillDataGridView(ctrlMant.ObtenerMantenimientos());
         }
 
         private void FillDataGridView(List<Mantenimiento> mantenimientos)
@@ -92,16 +92,16 @@ namespace TallerMantenimiento.Vista
             switch (columnaBusqueda)
             {
                 case "Código":
-                    resultados = ctrlMant.obtenerLista().FindAll(mantenimiento => mantenimiento.Codigo.ToLower().Contains(valorBusqueda)); 
+                    resultados = ctrlMant.ObtenerMantenimientos().FindAll(mantenimiento => mantenimiento.Codigo.ToLower().Contains(valorBusqueda)); 
                     break;
                 case "Cliente":
-                    resultados = ctrlMant.obtenerLista().FindAll(mantenimiento => $"{mantenimiento.Cliente.Nombre} {mantenimiento.Cliente.Apellido}".ToLower().Contains(valorBusqueda));
+                    resultados = ctrlMant.ObtenerMantenimientos().FindAll(mantenimiento => $"{mantenimiento.Cliente.Nombre} {mantenimiento.Cliente.Apellido}".ToLower().Contains(valorBusqueda));
                     break;
                 case "Mecánico":
-                    resultados = ctrlMant.obtenerLista().FindAll(mantenimiento => $"{mantenimiento.Mecanico.Nombre} {mantenimiento.Mecanico.Apellido}".ToLower().Contains(valorBusqueda)); 
+                    resultados = ctrlMant.ObtenerMantenimientos().FindAll(mantenimiento => $"{mantenimiento.Mecanico.Nombre} {mantenimiento.Mecanico.Apellido}".ToLower().Contains(valorBusqueda)); 
                     break;
                 case "Placa":
-                    resultados = ctrlMant.obtenerLista().FindAll(mantenimiento => mantenimiento.Vehiculo.Placa.ToLower().Contains(valorBusqueda));
+                    resultados = ctrlMant.ObtenerMantenimientos().FindAll(mantenimiento => mantenimiento.Vehiculo.Placa.ToLower().Contains(valorBusqueda));
                     break;
             }
             FillDataGridView(resultados);
@@ -126,7 +126,7 @@ namespace TallerMantenimiento.Vista
                     DataGridViewRow selectedRow = dgvMantenimientos.Rows[e.RowIndex];
                     string selectedCodigo = selectedRow.Cells["clmCodigo"].Value.ToString(); // Utilizamos el nombre de columna "clmCodigo"
 
-                    Mantenimiento selectedMantenimiento = ctrlMant.obtenerLista().Find(mantenimiento => mantenimiento.Codigo == selectedCodigo);
+                    Mantenimiento selectedMantenimiento = ctrlMant.ObtenerMantenimientos().Find(mantenimiento => mantenimiento.Codigo == selectedCodigo);
 
                     if (selectedMantenimiento != null)
                     {

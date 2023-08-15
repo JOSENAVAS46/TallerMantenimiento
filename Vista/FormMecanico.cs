@@ -27,7 +27,7 @@ namespace TallerMantenimiento.Vista
             dgvMecanicos.Columns.Add("clmEspecialidad", "Especialidad");
             dgvMecanicos.Columns.Add("clmSalario", "Salario");
 
-            List<Mecanico> lstMecanicos = ctrlM.obtenerLista();
+            List<Mecanico> lstMecanicos = ctrlM.ObtenerMecanicos();
             foreach (Mecanico m in lstMecanicos)
             {
                 dgvMecanicos.Rows.Add(m.Id, m.Nombre, m.Apellido, m.Cedula, m.Especialidad, m.Salario);
@@ -56,12 +56,12 @@ namespace TallerMantenimiento.Vista
                     cedula = txtCedula.Text.Trim(),
                     especialidad = cmbEspecialidad.Text.Trim();
                 double salario = Double.Parse(txtSalario.Text.Trim());
-                int id = ctrlM.obtenerLista().Count +1;
 
                 if (ctrlM.noVacio(nombre, apellido, cedula, especialidad, salario))
                 {
-                    ctrlM.guardarMecanico(id,nombre, apellido, cedula, especialidad, salario);
+                    ctrlM.AgregarMecanico(nombre, apellido, cedula, especialidad, salario);
                     limpiarDatos();
+                    llenarDataGridView();
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace TallerMantenimiento.Vista
                 DataGridViewRow selectedRow = dgvMecanicos.Rows[e.RowIndex];
                 int selectedId = Convert.ToInt32(selectedRow.Cells["clmId"].Value);
 
-                Mecanico selectedMecanico = ctrlM.obtenerLista().Find(mecanico => mecanico.Id == selectedId);
+                Mecanico selectedMecanico = ctrlM.ObtenerMecanicoPorID(selectedId);
                 if (selectedMecanico != null)
                 {
                     LlenarCamposMantMecanico(selectedMecanico);
@@ -168,15 +168,15 @@ namespace TallerMantenimiento.Vista
 
         private void EditarMecanicoPorId(int id, Mecanico nuevoMecanico)
         {
-            int posicion = ctrlM.obtenerLista().FindIndex(mecanico => mecanico.Id == id);
+            Mecanico mecanicoExistente =    ctrlM.ObtenerMecanicoPorID(id);
 
-            if (posicion >= 0)
+            if (mecanicoExistente != null)
             {
-                ctrlM.obtenerLista()[posicion] = nuevoMecanico;
+                ctrlM.ActualizarMecanico(id, nuevoMecanico.Nombre, nuevoMecanico.Apellido, nuevoMecanico.Cedula, nuevoMecanico.Especialidad, nuevoMecanico.Salario);
             }
             else
             {
-                MessageBox.Show("Mecánico no encontrado.");
+                MessageBox.Show("Mecanico no encontrado.");
             }
         }
 
@@ -200,11 +200,11 @@ namespace TallerMantenimiento.Vista
 
         private void EliminarMecanicoPorId(int id)
         {
-            Mecanico mecanicoAEliminar = ctrlM.obtenerLista().Find(mecanico => mecanico.Id == id);
+            Mecanico mecanicoAEliminar = ctrlM.ObtenerMecanicoPorID(id);
 
             if (mecanicoAEliminar != null)
             {
-                ctrlM.obtenerLista().Remove(mecanicoAEliminar);
+                ctrlM.EliminarMecanicoPorId(mecanicoAEliminar.Id);
             }
             else
             {

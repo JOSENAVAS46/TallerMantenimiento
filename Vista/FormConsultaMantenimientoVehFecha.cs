@@ -50,7 +50,7 @@ namespace TallerMantenimiento.Vista
 
         private void LoadMantenimientos()
         {
-            FillDataGridView(ctrlMant.obtenerLista());
+            FillDataGridView(ctrlMant.ObtenerMantenimientos());
         }
 
         private void FillDataGridView(List<Mantenimiento> mantenimientos)
@@ -74,7 +74,7 @@ namespace TallerMantenimiento.Vista
 
             List<Mantenimiento> resultados = new List<Mantenimiento>();
 
-            foreach (Mantenimiento mantenimiento in ctrlMant.obtenerLista())
+            foreach (Mantenimiento mantenimiento in ctrlMant.ObtenerMantenimientos())
             {
                 if (mantenimiento.FechaMantenimiento >= desde && mantenimiento.FechaMantenimiento <= hasta)
                 {
@@ -102,7 +102,7 @@ namespace TallerMantenimiento.Vista
                     DataGridViewRow selectedRow = dgvMantenimientos.Rows[e.RowIndex];
                     string selectedCodigo = selectedRow.Cells["clmCodigo"].Value.ToString(); // Utilizamos el nombre de columna "clmCodigo"
 
-                    Mantenimiento selectedMantenimiento = ctrlMant.obtenerLista().Find(mantenimiento => mantenimiento.Codigo == selectedCodigo);
+                    Mantenimiento selectedMantenimiento = ctrlMant.ObtenerMantenimientos().Find(mantenimiento => mantenimiento.Codigo == selectedCodigo);
 
                     if (selectedMantenimiento != null)
                     {

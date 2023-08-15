@@ -10,7 +10,7 @@ namespace TallerMantenimiento.Conexion
 
         public ConexionDB()
         {
-             conexion = new SqlConnection("Data Source=DESKTOP-HNU4CB9;Initial Catalog=TallerMantenimientoBD;Integrated Security=True");
+             conexion = new SqlConnection("Data Source=localhost;Initial Catalog=TallerMantenimientoBD;Integrated Security=True");
         }
 
         public void AbrirConexion()

@@ -192,7 +192,7 @@ namespace TallerMantenimiento.Vista
 
             if (clienteAEliminar != null)
             {
-                ctrlC.EliminarCliente(id);
+                ctrlC.EliminarCliente(clienteAEliminar.Id);
             }
             else
             {

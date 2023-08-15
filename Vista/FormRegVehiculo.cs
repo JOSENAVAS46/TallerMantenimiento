@@ -46,8 +46,9 @@ namespace TallerMantenimiento.Vista
                 color = cmbColor.Text.Trim();
             if (ctrlVehiculo.noVacio(placa,marca,modelo,color))
             {
-                ctrlVehiculo.guardarVehiculo(placa, marca, modelo, color);
+                ctrlVehiculo.AgregarVehiculo(placa, marca, modelo, color);
                 limpiarCampos();
+
             } else
             {
                 MessageBox.Show("Debe llenar todos los campos");
@@ -66,7 +67,7 @@ namespace TallerMantenimiento.Vista
             cmbColor.SelectedIndex = 0;
             cmbMarca.SelectedIndex = 0;
             txtModelo.Text = "";
-
+            this.Dispose();
         }
     }
     

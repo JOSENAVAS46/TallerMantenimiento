@@ -69,7 +69,7 @@ namespace TallerMantenimiento.Vista
             try
             {
                 cmbVehiculos.Items.Clear();
-                foreach (Vehiculo veh in ctrlV.obtenerLista())
+                foreach (Vehiculo veh in ctrlV.ObtenerVehiculos())
                 {
                     cmbVehiculos.Items.Add(veh);
                 }
@@ -86,7 +86,7 @@ namespace TallerMantenimiento.Vista
         {
             try
             {
-                foreach (Mecanico meca in ctrlM.obtenerLista())
+                foreach (Mecanico meca in ctrlM.ObtenerMecanicos())
                 {
                     cmbMecanicos.Items.Add(meca);
                 }
@@ -209,8 +209,8 @@ namespace TallerMantenimiento.Vista
             DateTime fecha = dtpFechaMantenimiento.Value;
             if (ctrlMnt.noVacio(clt, mech, veh, fecha, diagnostico, auxTipo))
             {
-                ctrlMnt.guardarMantenimiento(clt, mech, veh, fecha, diagnostico,
-                    auxTipo, lstRepuesto, obtenerServicios());
+                Mantenimiento mnt = new Mantenimiento(clt, mech, veh, fecha, diagnostico, auxTipo, lstRepuesto, obtenerServicios());
+                ctrlMnt.GuardarMantenimiento(mnt);
             }
             else{
                 MessageBox.Show("Ingrese todos los datos Solicitados.");

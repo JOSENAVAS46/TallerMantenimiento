@@ -133,7 +133,7 @@ namespace TallerMantenimiento.Vista
 
         private void pbMantVeh_Click(object sender, EventArgs e)
         {
-            if (ctrlM.obtenerLista().Count > 0 && ctrlC.ObtenerClientes().Count > 0)
+            if (ctrlM.ObtenerMecanicos().Count > 0 && ctrlC.ObtenerClientes().Count > 0)
             {
                 FormRegMantenimiento frmRegMantenimiento = new FormRegMantenimiento();
                 frmRegMantenimiento.TopLevel = false;
@@ -153,7 +153,7 @@ namespace TallerMantenimiento.Vista
 
         private void pbConsultarGral_Click(object sender, EventArgs e)
         {
-            if (ctrlMant.obtenerLista().Count > 0)
+            if (ctrlMant.ObtenerMantenimientos().Count > 0)
             {
                 FormConsultaMantenimientoVeh frmMantenimiento = new FormConsultaMantenimientoVeh();
                 frmMantenimiento.TopLevel = false;
@@ -172,7 +172,7 @@ namespace TallerMantenimiento.Vista
 
         private void pbConsultaFecha_Click(object sender, EventArgs e)
         {
-            if (ctrlMant.obtenerLista().Count > 0)
+            if (ctrlMant.ObtenerMantenimientos().Count > 0)
             {
                 FormConsultaMantenimientoVehFecha frmMantenimiento =
                     new FormConsultaMantenimientoVehFecha();
